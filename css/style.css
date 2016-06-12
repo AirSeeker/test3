@@ -4,7 +4,7 @@
 	margin: 10px;
 	padding: 0;
 }
-.col-xs-6{
+.col-xs-6,.col-xs-4, .col-xs-3, .col-xs-2{
 	margin: 0;
 	padding: 0;
 }
@@ -21,7 +21,6 @@
 	top: 0;
 	left: 0;
 }
-
 
 /*animation pulse on hover*/
 @-webkit-keyframes hvr-pulse-grow {
