@@ -9,20 +9,13 @@ function getRandomColor() {
 
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
-
-  // While there remain elements to shuffle...
   while (0 !== currentIndex) {
-
-    // Pick a remaining element...
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
-
-    // And swap it with the current element.
     temporaryValue = array[currentIndex];
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
   }
-
   return array;
 }
 
@@ -59,8 +52,27 @@ function setGrid(gridSystem){
     setColorForRandomTwoBoxes(nextGridArr);
   });
 }
-
-
+function startTimer(){
+  timerSetInterval = setInterval(function(){
+    var time = $("#time").html();
+    var arr = time.split(":");
+    var m = arr[0];
+    var s = arr[1];
+    if (s == 0) {
+      if (m == 0) {
+        alert("Time is out!\n You lose!");
+        window.location.reload();
+        return;
+      }
+      m--;
+      if (m < 10) m = "0" + m;
+      s = 59;
+    }else s--;
+    if (s < 10) s = "0" + s;
+    $("#time").html(m+":"+s); 
+  }, 1000);
+  return timerSetInterval;
+}
  function onClickEventHandler(card) {
       if(clickCounter < 2){
         card.toggleClass('flipped');
@@ -107,6 +119,9 @@ function setGrid(gridSystem){
                 clickCounter = 0;
                 winStatus = ''
                 roundTimer+=1;
+                clearInterval(timerSetInterval);
+                $("#time").html("2:00");
+                startTimer();
                 $('#status span').html(Number($('#status span').html()) -1);
                 setGrid(gridLinks[round]);
                 if(roundTimer.length === 4){
@@ -137,3 +152,5 @@ function setGrid(gridSystem){
   }
 
 setGrid(gridLinks[round]);
+startTimer();
+  
