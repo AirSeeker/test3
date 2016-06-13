@@ -130,13 +130,14 @@ function startTimer(){
                   gridCounter++;
                   if(round > 4){
                     alert('You Won!');
-                     gridCounter = 2;
-                     round = 0;
-                     roundTimer = '';
-                     pairCheck = [];
-                     linkPairCheck = [];
-                     clickCounter = 0;
-                     winStatus = '';
+                    gridCounter = 2;
+                    round = 0;
+                    roundTimer = '';
+                    pairCheck = [];
+                    linkPairCheck = [];
+                    clickCounter = 0;
+                    winStatus = '';
+                    $('#status span').html('20');
                     setGrid(gridLinks[round]);
                   }else{
                     alert('Next round!');
